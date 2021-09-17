@@ -1,6 +1,6 @@
         /* This pipeline creates a docker compose and then executes all the scripts. Note the Jenkins has to be in Linux environment */
 node {
-    def Built-In Node
+    def app
 
     stage('Clone repository') {
         /* Clone repository */
@@ -16,7 +16,7 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
-    	    cmd_exec('/usr/local/bin/docker-compose -f docker-compose.yml up -d')
+    	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           }
         )
     }
