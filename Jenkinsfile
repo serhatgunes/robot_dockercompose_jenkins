@@ -11,7 +11,6 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
-    		FROM python:3.6.9
             RUN apt-get update && apt-get install -y sudo sshpass iputils-ping wget
             WORKDIR /tmp/robot_dockercompose
             COPY . .
