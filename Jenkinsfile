@@ -12,11 +12,6 @@ node {
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
-          },
-          "Build Image": {
-            /* This builds an image with all pytest selenium scripts in it */
-    		def dockerfile = 'Dockerfile'
-            app = docker.build("-f ${dockerfile} ./")
           }
         )
     }    
