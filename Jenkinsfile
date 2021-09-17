@@ -18,16 +18,8 @@ node {
 
     stage('Execute') {
 		/* Execute the pytest script. On faliure proceed to next step */
-        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-
-       if (isUnix()) {
-                sh 'docker exec test-execution robot --variable browser:Chrome test/webui_demo.robot'
-            }
-        else {
-                /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
-                bat 'docker exec test-execution robot --variable browser:Chrome test/webui_demo.robot'
-            }
-        }
+		cmd_exec('docker exec -it test-execution bash')
+        cmd_exec('robot -v browser:Chrome test/webui_demo.robot')
     }
 
     stage('Docker Teardown') {
