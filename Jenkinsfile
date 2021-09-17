@@ -11,7 +11,7 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
-    		cmd_exec('docker-compose ps')
+    		cmd_exec('docker ps')
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           }
         )
