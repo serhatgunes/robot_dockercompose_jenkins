@@ -35,19 +35,9 @@ node {
           "Stop Compose": {
     		/* Tear down docker compose */
             cmd_exec('docker-compose down --rmi local')
-          },
-          "Remove Image": {
-            /* Delete the image which got created earlier */
-            cmd_exec('docker rmi test-execution -f')
           }
         )
     }
-
-    stage('Create Report') {
-        /* Generate Allure Report */
-        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-    }
-
 }
 
 def cmd_exec(command) {
