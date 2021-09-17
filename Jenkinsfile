@@ -11,17 +11,11 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
-            RUN apt-get update && apt-get install -y sudo sshpass iputils-ping wget
-            WORKDIR /tmp/robot_dockercompose
-            COPY . .
-            COPY requirements.txt .
-            RUN pip install --upgrade pip
-            RUN pip install -r requirements.txt
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           },
           "Build Image": {
             /* This builds an image with all pytest selenium scripts in it */
-    		def dockerfile = 'pytest.Dockerfile'
+    		def dockerfile = 'Dockerfile'
             app = docker.build("pytest-with-src","-f ${dockerfile} ./")
           }
         )
