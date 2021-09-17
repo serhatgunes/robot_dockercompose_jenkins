@@ -1,55 +1,65 @@
-#!/usr/bin/env groovy
-pipeline {
-  agent any
+        /* This pipeline creates a docker compose and then executes all the scripts. Note the Jenkins has to be in Linux environment */
+node {
+    def app
 
-  environment {
-    TAG = "demo_${env.BRANCH_NAME}_${env.BUILD_NUMBER}"
-  }
-
-  stages {
-    stage("Checkout") {
-      steps {
+    stage('Clone repository') {
+        /* Clone repository */
         checkout scm
-      }
     }
 
-    stage("Cleaning and preparing") {
-      steps {
-        sh """#!/bin/bash -e
-          git clean -dfx
-          mkdir reports
-        """
-      }
+    stage('Docker Setup') {
+        parallel(
+          "Start Compose": {
+    		/* Start docker-compose with five instances of Chrome */
+    	    cmd_exec('docker-compose -f docker-compose.yml up -d')
+          },
+          "Build Image": {
+            /* This builds an image with all pytest selenium scripts in it */
+    		def dockerfile = 'Dockerfile'
+            app = docker.build("pytest-with-src","-f ${dockerfile} ./")
+          }
+        )
     }
 
-    stage('Run Selenium Tests') {
-      steps {
-        try {
-          sh """#!/bin/bash -e
-            # Build, create and start containers in a background
-            docker-compose -p ${TAG} up -d --build
-          """
-          sh """#!/bin/bash -e
-            # Wait for chromemode to be up and execute selenium tests in robottests container
-            docker-compose -p ${TAG} run robottests -t 15 chromenode:5555 -- robot -d reports -x xunit --variablefile variables/config.py --variable BROWSER:chrome tests/
-          """
-        } finally {
-          publishHTML target: [
-          allowMissing: false,
-          alwaysLinkToLastBuild: true,
-          keepAll: true,
-          reportDir: 'reports',
-          reportFiles: 'report.html',
-          reportName: 'Robot Framework Test Execution Report'
-          ]
-          junit 'reports/*.xml'
+    stage('Execute') {
+		/* Execute the pytest script. On faliure proceed to next step */
+        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
-          sh """#!/bin/bash
-            # Stop and remove the containers
-            docker-compose -p ${TAG} down
-          """
+       if (isUnix()) {
+                sh 'docker run --network="host" --rm -v ${WORKSPACE}/allure-results:/AllureReports pytest-with-src --executor "remote" --browser "chrome" .'
+            }
+        else {
+                /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
+                bat 'docker run --network="host" --rm -v "%WORKSPACE%\\allure-results":/AllureReports pytest-with-src --executor "remote" --browser "chrome" .'
+            }
         }
-      }
     }
-  }
+
+    stage('Docker Teardown') {
+        parallel(
+          "Stop Compose": {
+    		/* Tear down docker compose */
+            cmd_exec('docker-compose down --rmi local')
+          },
+          "Remove Image": {
+            /* Delete the image which got created earlier */
+            cmd_exec('docker rmi pytest-with-src -f')
+          }
+        )
+    }
+
+    stage('Create Report') {
+        /* Generate Allure Report */
+        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+    }
+
+}
+
+def cmd_exec(command) {
+    if (isUnix()) {
+        return sh(returnStdout: true, script: "${command}").trim()
+    }
+    else {
+        return bat(returnStdout: true, script: "${command}").trim()
+    }
 }
