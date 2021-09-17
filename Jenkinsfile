@@ -18,38 +18,6 @@ node {
         )
     }
 
-    stage('Execute') {
-		/* Execute the pytest script. On faliure proceed to next step */
-        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-
-       if (isUnix()) {
-                sh 'docker run --network="host" --rm -v ${WORKSPACE}/allure-results:/AllureReports pytest-with-src --executor "remote" --browser "chrome" .'
-            }
-        else {
-                /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
-                bat 'docker run --network="host" --rm -v "%WORKSPACE%\\allure-results":/AllureReports pytest-with-src --executor "remote" --browser "chrome" .'
-            }
-        }
-    }
-
-    stage('Docker Teardown') {
-        parallel(
-          "Stop Compose": {
-    		/* Tear down docker compose */
-            cmd_exec('docker-compose down --rmi local')
-          },
-          "Remove Image": {
-            /* Delete the image which got created earlier */
-            cmd_exec('docker rmi pytest-with-src -f')
-          }
-        )
-    }
-
-    stage('Create Report') {
-        /* Generate Allure Report */
-        allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-    }
-
 }
 
 def cmd_exec(command) {
