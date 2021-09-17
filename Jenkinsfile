@@ -7,7 +7,7 @@ node {
         checkout scm
     }
     environment {
-        PATH = "$PATH:/usr/local/bin"
+        PATH = "$PATH:/usr/bin"
     }
 
     stage('Docker Setup') {
