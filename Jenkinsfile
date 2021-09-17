@@ -19,6 +19,11 @@ node {
             RUN pip install --upgrade pip
             RUN pip install -r requirements.txt
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
+          },
+          "Build Image": {
+            /* This builds an image with all pytest selenium scripts in it */
+    		def dockerfile = 'pytest.Dockerfile'
+            app = docker.build("pytest-with-src","-f ${dockerfile} ./")
           }
         )
     }    
