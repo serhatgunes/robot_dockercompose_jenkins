@@ -6,14 +6,13 @@ node {
         /* Clone repository */
         checkout scm
     }
-    environment {
-        PATH = "$PATH:/usr/bin"
-    }
 
     stage('Docker Setup') {
         parallel(
           "Start Compose": {
     		/* Start docker-compose with five instances of Chrome */
+    		cmd_exec('sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose')
+    		cmd_exec('sudo chmod +x /usr/local/bin/docker-compose')
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           }
         )
