@@ -10,6 +10,15 @@ node {
     stage('Docker Setup') {
         parallel(
           "Start Compose": {
+            agent { docker { image 'alpine:3.12.0' } }
+            steps {
+                sh '''
+                    apk update;
+                    apk add --no-cache git;
+                    apk add --no-cache openssh;
+                    git -v;
+                '''
+            }
     		/* Start docker-compose with five instances of Chrome */
     		sh ('apk add --no-cache docker-compose')
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
