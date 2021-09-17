@@ -5,6 +5,6 @@ COPY . .
 COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-FROM jenkins/jenkins:latest
+# FROM jenkins/jenkins:latest
 # Can be add :latest
-RUN jenkins-plugin-cli --plugins blueocean
+# RUN jenkins-plugin-cli --plugins blueocean
