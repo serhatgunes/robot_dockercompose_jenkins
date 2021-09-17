@@ -6,6 +6,9 @@ node {
         /* Clone repository */
         checkout scm
     }
+    environment {
+        PATH = "$PATH:/usr/local/bin"
+    }
 
     stage('Docker Setup') {
         parallel(
