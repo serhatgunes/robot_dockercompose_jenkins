@@ -38,7 +38,7 @@ node {
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
-            cmd_exec('docker rmi pytest-with-src -f')
+            cmd_exec('docker rmi test-execution -f')
           }
         )
     }
