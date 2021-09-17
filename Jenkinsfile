@@ -6,12 +6,18 @@ node {
         /* Clone repository */
         checkout scm
     }
+    environment {
+        PATH = "$PATH:/usr/local/bin"
+    }
 
     stage('Docker Setup') {
         parallel(
           "Start Compose": {
+          steps{
+                echo "Path is: $PATH"
+          }
     		/* Start docker-compose with five instances of Chrome */
-    	    cmd_exec('docker-compose -f docker-compose.yml up -d')
+    	    cmd_exec('/usr/local/bin/docker-compose -f docker-compose.yml up -d')
           },
           "Build Image": {
             /* This builds an image with all pytest selenium scripts in it */
