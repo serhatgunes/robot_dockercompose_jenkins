@@ -21,7 +21,7 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh 'docker exec test-execution robot --variable browser:Chrome test/webui_demo.robot'
+                sh 'docker exec test-execution robot --variable browser:Chrome .test/webui_demo'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
