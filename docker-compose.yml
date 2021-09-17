@@ -1,0 +1,71 @@
+version: "3.5"
+services:
+  robot-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '../.:/tmp/.'
+      - /dev/shm:/dev/shm
+    entrypoint: tail -f /dev/null
+    depends_on:
+      - 'selenium-hub'
+    networks:
+      - selenium
+    container_name: test-execution
+  selenium-hub:
+    image: selenium/hub:latest
+    volumes:
+      - '../.:/tmp/.'
+      - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
+    expose:
+      - "4444"
+    networks:
+      - selenium
+    container_name: selenium-hub
+  chrome:
+    image: selenium/node-chrome-debug:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      VNC_NO_PASSWORD: 1
+      NODE_MAX_INSTANCES: 15
+      NODE_MAX_SESSION: 15
+    ports:
+      - 47750:5900
+    expose:
+      - "47750"
+    networks:
+      - selenium
+    container_name: chrome
+  firefox:
+    image: selenium/node-firefox-debug:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      VNC_NO_PASSWORD: 1
+    ports:
+      - 47761:5900
+    expose:
+      - "47761"
+    networks:
+      - selenium
+    container_name: firefox
+
+#networks:
+#  robot_network:
+#    external: true
+#    name: robot_network
+networks:
+  selenium:
+    name: selenium
