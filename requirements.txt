@@ -1,0 +1,19 @@
+# Robot Framework Libraries
+robotframework==3.2.1                       # Robot Framework is generic open source automation framework
+robotframework-seleniumlibrary==4.4.0       # Web testing library for Robot Framework that utilizes the Selenium tool internally
+robotframework-sshlibrary==3.4.0            # Robot Framework test library for SSH and SFTP
+robotframework-pabot==1.8.0                 # A parallel executor for Robot Framework tests
+
+# Report Portal Libraries
+robotframework-reportportal==5.0.3          # Listener for RobotFramework to report results to ReportPortal
+reportportal-client==5.0.5                  # Library used only for implementors of custom listeners for ReportPortal
+
+# Python Libraries
+PyYAML==5.3.1                               # YAML parser and emitter for Python
+requests==2.25.0                            # HTTP library for Python
+selenium==3.141.0                           # Python language bindings for Selenium WebDriver
+simplejson==3.17.2                          # JSON encoder and decoder for Python
+urllib3==1.26.2                             # HTTP client for Python
+
+# Selenium
+selenium                                    # Library for Selenium
