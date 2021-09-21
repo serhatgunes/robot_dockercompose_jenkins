@@ -1,0 +1,12 @@
+version: "3.5"
+services:
+  robot-test:
+    image: test-execution
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '../.:/tmp/.'
+      - /dev/shm:/dev/shm
+    entrypoint: tail -f /dev/null
+    container_name: test-execution

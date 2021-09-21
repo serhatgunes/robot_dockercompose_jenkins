@@ -15,7 +15,7 @@ node {
           },
           "Build Image": {
             /* This builds an image with all robot selenium scripts in it */
-    		/* cmd_exec('docker-compose build robot-test')*/
+    		cmd_exec('docker-compose -f docker-compose-robot_test.yml up -d')
     		/* def dockerfile = 'robot_Dockerfile' */
             /* app = docker.build("test-execution","-f ${dockerfile} ./") */
           }
