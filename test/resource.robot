@@ -15,7 +15,7 @@ ${DELAY}          0
 Open Browser To IMDB
     ${browser_options} =     Evaluate    sys.modules['selenium.webdriver'].${browser}Options()    sys, selenium.webdriver
     ${options} =     Call Method     ${browser_options}    to_capabilities
-    Open Browser    ${URL}    browser=${browser}    remote_url=http://selenium-grid:4444/wd/hub    desired_capabilities=${options}
+    Open Browser    ${URL}    browser=${browser}    remote_url=http://localhost:4444/wd/hub    desired_capabilities=${options}
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
 
