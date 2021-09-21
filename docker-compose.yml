@@ -1,19 +1,6 @@
 version: "3.5"
 services:
-  robot-test:
-    image: test-execution
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - '../.:/tmp/.'
-      - /dev/shm:/dev/shm
-    entrypoint: tail -f /dev/null
-    depends_on:
-      - 'selenium-hub'
-    networks:
-      - selenium
-    container_name: test-execution
+
   selenium-hub:
     image: selenium/hub:latest
     volumes:
