@@ -10,16 +10,14 @@ node {
     stage('Docker Setup') {
         parallel(
           "Start Compose": {
-    		/* Start docker-compose with five instances of Chrome */
+    		/* Start docker-compose */
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
-    	    cmd_exec('pwd')
-    	    cmd_exec('ls')
           }
         )
     }
 
     stage('Execute') {
-		/* Execute the pytest script. On faliure proceed to next step */
+		/* Execute the script. On faliure proceed to next step */
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
