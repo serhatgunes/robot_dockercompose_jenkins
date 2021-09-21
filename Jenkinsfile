@@ -21,11 +21,11 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh 'docker run robot_dockercompose_jenkins_robot-test robot -v browser:Chrome test/webui_demo.robot'
+                sh 'docker run --network="host" image_name:test-execution -v browser:Chrome test/webui_demo.robot'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
-                bat 'docker run robot_dockercompose_jenkins_robot-test robot -v browser:Chrome test/webui_demo.robot'
+                bat 'docker run --network="host" image_name:test-execution -v browser:Chrome test/webui_demo.robot'
             }
         }
     }

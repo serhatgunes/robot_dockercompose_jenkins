@@ -1,6 +1,7 @@
 version: "3.5"
 services:
   robot-test:
+    image: test-execution
     build:
       context: .
       dockerfile: Dockerfile
