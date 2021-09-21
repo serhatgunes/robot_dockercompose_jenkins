@@ -14,9 +14,9 @@ node {
     	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           },
           "Build Image": {
-            /* This builds an image with all pytest selenium scripts in it */
-    		/* cmd_exec('docker-compose build robot-test') */
-    		/* def dockerfile = 'Dockerfile' */
+            /* This builds an image with all robot selenium scripts in it */
+    		cmd_exec('docker-compose build robot-test') */
+    		/* def dockerfile = 'robot_Dockerfile' */
             /* app = docker.build("test-execution","-f ${dockerfile} ./") */
           }
         )
