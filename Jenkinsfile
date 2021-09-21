@@ -44,7 +44,7 @@ node {
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
-            /* cmd_exec('docker rmi test-execution:latest -f') */
+            cmd_exec('docker rmi test-execution:latest -f')
           }
         )
     }
