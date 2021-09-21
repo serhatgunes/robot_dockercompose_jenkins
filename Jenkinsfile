@@ -15,8 +15,9 @@ node {
           },
           "Build Image": {
             /* This builds an image with all pytest selenium scripts in it */
-    		def dockerfile = 'Dockerfile'
-            app = docker.build("test-execution","-f ${dockerfile} ./")
+    		cmd_exec('docker-compose build robot-test')
+    		/* def dockerfile = 'Dockerfile' */
+            /* app = docker.build("test-execution","-f ${dockerfile} ./") */
           }
         )
     }
