@@ -7,10 +7,13 @@
 > 
 > root@613528631ffb:/tmp/robot_dockercompose# robot -v browser:Chrome test/webui_demo.robot
 > 
+**Stop all containers:** 
 > docker kill $(docker ps -q)
 > 
+**Remove all containers:**
 > docker rm $(docker ps -a -q)
 > 
+**Remove all docker images:**
 > docker rmi $(docker images -q) --force
 > 
 > 
