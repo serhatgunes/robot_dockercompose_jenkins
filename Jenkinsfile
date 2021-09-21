@@ -42,9 +42,9 @@ node {
     		/* Tear down docker compose */
             cmd_exec('docker-compose down --rmi local')
           },
-          "Remove Image": {
-            /* Delete the image which got created earlier */
-            cmd_exec('docker rmi test-execution:latest -f')
+          "Remove Images": {
+            /* Delete the images which got created earlier */
+            cmd_exec('docker rmi $(docker images -q) --force')
           }
         )
     }
