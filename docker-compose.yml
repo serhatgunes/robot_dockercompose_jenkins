@@ -8,7 +8,11 @@ services:
     volumes:
       - '../.:/tmp/.'
       - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
     entrypoint: tail -f /dev/null
+    networks:
+      - selenium
     container_name: test-execution
   selenium-hub:
     image: selenium/hub:latest
