@@ -15,7 +15,7 @@ node {
           },
           "Build Image": {
             /* This builds an image with all robot selenium scripts in it */
-    		cmd_exec('docker-compose -f docker-compose-robot_test.yml up -d')
+    		/* cmd_exec('docker-compose -f docker-compose-robot_test.yml up -d') */
     		/* def dockerfile = 'robot_Dockerfile' */
             /* app = docker.build("test-execution","-f ${dockerfile} ./") */
           }
@@ -45,7 +45,7 @@ node {
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
-            cmd_exec('docker rmi test-execution:latest -f')
+            cmd_exec('docker rmi $(docker images -q) --force')
           }
         )
     }
