@@ -40,8 +40,8 @@ node {
         parallel(
           "Stop Compose": {
     		/* Tear down docker compose */
-            cmd_exec('docker kill $(docker ps -q)')
-            cmd_exec('docker rm $(docker ps -a -q)')
+            cmd_exec('docker kill $(docker ps -q) && sleep 1s && docker rm $(docker ps -a -q)')
+            /* cmd_exec('docker rm $(docker ps -a -q)') */
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
