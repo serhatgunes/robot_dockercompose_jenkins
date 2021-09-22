@@ -1,5 +1,6 @@
 FROM python:3.6.9
 RUN apt-get update && apt-get install -y sudo sshpass iputils-ping wget
+RUN chmod +x wait-for-grid.sh
 WORKDIR /tmp/robot_dockercompose_jenkins
 COPY . .
 COPY requirements.txt .
