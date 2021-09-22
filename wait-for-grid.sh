@@ -5,11 +5,9 @@ set -e
 
 cmd="$@"
 
-while ! curl -sSL "http://localhost:4444/wd/hub/status" 2>&1 \
-        | jq -r '.value.ready' 2>&1 | grep "true" >/dev/null; do
-    echo 'Waiting for the Grid'
-    sleep 1
-done
+echo "Waiting for selenium hub server response"
+timeout 300 bash -c 'while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:4444)" != '200' ]]; do sleep 5; done' || false
 
->&2 echo "Selenium Grid is up - executing tests"
+
+>&2 echo "Selenium Hub is up - executing tests"
 exec $cmd
