@@ -1,6 +1,6 @@
 FROM python:3.6.9
 RUN apt-get update && apt-get install -y sudo sshpass iputils-ping wget
-WORKDIR /tmp/robot_dockercompose
+WORKDIR /tmp/robot_selenium
 COPY . .
 COPY requirements.txt .
 RUN pip install --upgrade pip
