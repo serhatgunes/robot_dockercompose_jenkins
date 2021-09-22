@@ -27,7 +27,7 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh 'docker run --network="host" -v /dev/shm/dev/shm test-execution robot -v browser:Chrome test/webui_demo.robot'
+                sh 'docker exec -it test-execution robot -v browser:Chrome test/webui_demo.robot'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
@@ -45,7 +45,7 @@ node {
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
-            cmd_exec('docker rmi $(docker images -q) --force')
+            /* cmd_exec('docker rmi $(docker images -q) --force') */
           }
         )
     }
