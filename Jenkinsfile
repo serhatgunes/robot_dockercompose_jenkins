@@ -27,7 +27,7 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh 'docker exec selenium-hub wait_all_done 30s && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot'
+                sh 'docker exec selenium-hub wait-selenium-hub 30s && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
