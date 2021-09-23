@@ -36,6 +36,29 @@ node {
         }
     }
 
+    stage('Generate Report') {
+    	/* Execute the script. On faliure proceed to next step */
+        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+        steps {
+            echo 'Generating robot reports...'
+            script {
+                step(
+                    [
+                    $class                    : 'RobotPublisher',
+                    outputPath                : '<insert/the/output/path>',
+                    outputFileName            : "*.xml",
+                    reportFileName            : "report.html",
+                    logFileName               : "log.html",
+                    disableArchiveOutput      : false,
+                    passThreshold             : 100,
+                    unstableThreshold         : 95.0,
+                    otherFiles                : "*.png"
+                    ]
+                )
+            }
+        }
+    }
+
     stage('Docker Teardown') {
         parallel(
           "Stop Compose": {
@@ -45,7 +68,7 @@ node {
           },
           "Remove Image": {
             /* Delete the image which got created earlier */
-            cmd_exec('docker rmi test-execution --force')
+            cmd_exec('docker rmi test-execution --force local')
           }
         )
     }
