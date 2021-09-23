@@ -27,7 +27,7 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh './wait-for-grid.sh && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot outputPath: '.', logFileName: 'log.html', outputFileName: 'output.xml', reportFileName: 'report.hml', passThreshold: 100, unstableThreshold: 75.0'
+                sh './wait-for-grid.sh && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot outputPath: '.', logFileName: "log.html", outputFileName: "output.xml", reportFileName: "report.hml", passThreshold: 100, unstableThreshold: 75.0'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
