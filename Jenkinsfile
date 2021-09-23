@@ -27,7 +27,7 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh './wait-for-grid.sh && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot'
+                sh './wait-for-grid.sh && docker exec test-execution robot -v browser:Chrome test/webui_demo.robot outputPath: '.', logFileName: 'log.html', outputFileName: 'output.xml', reportFileName: 'report.hml', passThreshold: 100, unstableThreshold: 75.0'
             }
         else {
                 /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
@@ -36,29 +36,6 @@ node {
         }
     }
 
-    stage('Generate Report') {
-    	/* Execute the script. On faliure proceed to next step */
-        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        steps {
-            echo 'Generating robot reports...'
-            script {
-                step(
-                    [
-                    $class                    : 'RobotPublisher',
-                    outputPath                : '<insert/the/output/path>',
-                    outputFileName            : "*.xml",
-                    reportFileName            : "report.html",
-                    logFileName               : "log.html",
-                    disableArchiveOutput      : false,
-                    passThreshold             : 100,
-                    unstableThreshold         : 95.0,
-                    otherFiles                : "*.png"
-                    ]
-                )
-                }
-            }
-        }
-    }
 
     stage('Docker Teardown') {
         parallel(
