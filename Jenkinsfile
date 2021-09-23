@@ -55,6 +55,7 @@ node {
                     otherFiles                : "*.png"
                     ]
                 )
+                }
             }
         }
     }
