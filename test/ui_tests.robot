@@ -19,4 +19,10 @@ Verify Successful Login to OrangeHRM
     Logout
     [Teardown]    Close Browser
 
+Search Movie
+    [Tags]  webui_demo
+    Open Browser With Parameter
+    Search Movie  ${MOVIE_NAME}
+    [Teardown]    Close Browser
+
 *** Keywords ***
