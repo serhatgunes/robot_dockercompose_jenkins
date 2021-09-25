@@ -34,18 +34,7 @@ node {
             }
         }
     }
-    stage('Execute') {
-		/* Execute the script. On faliure proceed to next step */
-        catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
-       if (isUnix()) {
-                sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
-            }
-        else {
-                bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
-            }
-        }
-    }
   try {
       stage('Test myapp') {
          echo "R ${currentBuild.result} C ${currentBuild.currentResult}"
