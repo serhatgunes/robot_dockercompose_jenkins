@@ -11,7 +11,7 @@ node {
         parallel(
           "Start Compose": {
     		/* Start docker-compose */
-    	    cmd_exec('docker-compose -f docker-compose.yml up')
+    	    cmd_exec('docker-compose -f docker-compose.yml up -d')
           },
           "Build Image": {
             /* This builds an image with all robot selenium scripts in it */
