@@ -1,6 +1,6 @@
 FROM python:3.6.9
 RUN apt-get update && apt-get install -y sudo sshpass iputils-ping wget
-WORKDIR /tmp/robot_selenium
+WORKDIR /tmp/robot_dockercompose_jenkins
 COPY . .
 COPY requirements.txt .
 COPY wait-for-grid.sh .
