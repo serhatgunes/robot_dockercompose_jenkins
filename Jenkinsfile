@@ -30,8 +30,7 @@ node {
                 sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/webui_demo.robot'
             }
         else {
-                /* Make sure you have shared the folder and set full permissions for this folder "%WORKSPACE%\\allure-results"*/
-                bat 'docker run --network="host" test-execution robot -v browser:Chrome test/webui_demo.robot'
+                bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/webui_demo.robot'
             }
         }
     }
@@ -60,10 +59,9 @@ node {
           "Stop Compose": {
     		/* Tear down docker compose */
             cmd_exec('docker kill $(docker ps -q) && sleep 1s && docker rm $(docker ps -a -q)')
-            /* cmd_exec('docker rm $(docker ps -a -q)') */
           },
           "Remove Image": {
-            /* Delete the image which got created earlier */
+            /* Delete test-execution image which got created earlier */
             cmd_exec('docker rmi test-execution --force')
           }
         )

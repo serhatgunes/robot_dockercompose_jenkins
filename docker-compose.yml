@@ -62,11 +62,6 @@ services:
     networks:
       - selenium
     container_name: firefox
-
-#networks:
-#  robot_network:
-#    external: true
-#    name: robot_network
 networks:
   selenium:
     name: selenium

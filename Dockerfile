@@ -7,6 +7,3 @@ COPY wait-for-grid.sh .
 RUN chmod +x wait-for-grid.sh
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-# FROM jenkins/jenkins:latest
-# Can be add :latest
-# RUN jenkins-plugin-cli --plugins blueocean
