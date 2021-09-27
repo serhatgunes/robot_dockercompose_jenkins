@@ -27,10 +27,10 @@ node {
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
        if (isUnix()) {
-                sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/webui_demo.robot'
+                sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
             }
         else {
-                bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/webui_demo.robot'
+                bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
             }
         }
     }
