@@ -5,7 +5,8 @@ Variables  ../TestData/Testdata.py
 
 *** Keywords ***
 Verify Leave Page Box is Visible
-    Element Should Be Visible  ${LeaveListBox}  timeout=5
+    Wait Until Element Is Visible  ${LeaveListBox}  timeout=15
 
 Click Leave Tab
+    Click Element  ${LeaveTab}
     Click Element  ${LeaveTab}

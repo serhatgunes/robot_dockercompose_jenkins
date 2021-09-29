@@ -5,7 +5,8 @@ Variables  ../TestData/Testdata.py
 
 *** Keywords ***
 Verify System Users Box is Visible
-    Element Should Be Visible  ${SystemUsersBox}  timeout=5
+    Wait Until Element Is Visible  ${SystemUsersBox}  timeout=15
 
 Click Admin Tab
+    Click Element  ${AdminTab}
     Click Element  ${AdminTab}

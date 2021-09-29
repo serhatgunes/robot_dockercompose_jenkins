@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation  Page Object in Robot Framework
 Library  SeleniumLibrary
+Library  pabot.PabotLib
 Resource  ../Resources/KeywordDefinition/LoginPage.robot
 Resource  ../Resources/KeywordDefinition/HomePage.robot
 Resource  ../Resources/KeywordDefinition/AdminPage.robot
@@ -19,7 +20,6 @@ Verify Successful Login and Logout to System
     Input Password
     Click Login
     Verify Welcome Text is Visible
-    Logout
     [Teardown]    Close Browser
 
 Verify Successful Navigation to Admin Page
@@ -32,7 +32,6 @@ Verify Successful Navigation to Admin Page
     Verify Welcome Text is Visible
     Click Admin Tab
     Verify System Users Box is Visible
-    Logout
     [Teardown]    Close Browser
 
 Verify Successful Navigation to PIM Page
@@ -45,7 +44,6 @@ Verify Successful Navigation to PIM Page
     Verify Welcome Text is Visible
     Click PIM Tab
     Verify Employee Information Box is Visible
-    Logout
     [Teardown]    Close Browser
 
 Verify Successful Navigation to Leave Page
@@ -58,7 +56,6 @@ Verify Successful Navigation to Leave Page
     Verify Welcome Text is Visible
     Click Leave Tab
     Verify Leave Page Box is Visible
-    Logout
     [Teardown]    Close Browser
 
 *** Keywords ***

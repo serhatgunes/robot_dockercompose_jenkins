@@ -5,7 +5,7 @@ LoginButton = "id:btnLogin"
 
 # Home Page Locators
 WelcomeText = "id:welcome"
-LogoutButton = "css:[href=\"/index.php/auth/logout\"]"
+LogoutButton = "xpath://a[contains(text(),'Logout')]"
 
 # Admin Page Locators
 AdminTab = "id:menu_admin_viewAdminModule"

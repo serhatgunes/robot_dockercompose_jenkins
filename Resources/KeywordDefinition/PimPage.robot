@@ -5,7 +5,8 @@ Variables  ../TestData/Testdata.py
 
 *** Keywords ***
 Verify Employee Information Box is Visible
-    Element Should Be Visible  ${EmployeeInformationBox}  timeout=5
+    Wait Until Element Is Visible  ${EmployeeInformationBox}  timeout=15
 
 Click PIM Tab
+    Click Element  ${PimTab}
     Click Element  ${PimTab}

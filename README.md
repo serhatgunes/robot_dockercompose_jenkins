@@ -16,5 +16,5 @@
 **Remove all docker images:**
 > docker rmi $(docker images -q) --force
 > 
-> 
-> 
+**Run tests in parallel:**
+> pabot --pabotlib --processes 2 --argumentfile1 Firefox.args --argumentfile2 Chrome.args  test/ui_tests.robot
