@@ -1,2 +1,2 @@
 -v Browser:Chrome
---outputdir ./reports/Chrome
+-v tags:Chrome

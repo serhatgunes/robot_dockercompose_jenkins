@@ -14,7 +14,7 @@ Resource  ../Resources/KeywordDefinition/Common.robot
 *** Test Cases ***
 Verify Successful Login and Logout to System
     [documentation]  This test case verifies that the user is able to successfully Login and Logout to OrangeHRM
-    [Tags]  Smoke
+    [Tags]  ${tags}
     Open Browser With Parameter
     Input Username
     Input Password
@@ -24,7 +24,7 @@ Verify Successful Login and Logout to System
 
 Verify Successful Navigation to Admin Page
     [documentation]  This test case verifies that the user is able to successfully Login and reach to Admin page
-    [Tags]  Smoke  TabPage
+    [Tags]  ${tags}
     Open Browser With Parameter
     Input Username
     Input Password
@@ -36,7 +36,7 @@ Verify Successful Navigation to Admin Page
 
 Verify Successful Navigation to PIM Page
     [documentation]  This test case verifies that the user is able to successfully Login and reach to PIM page
-    [Tags]  Smoke  TabPage
+    [Tags]  ${tags}
     Open Browser With Parameter
     Input Username
     Input Password
@@ -48,7 +48,7 @@ Verify Successful Navigation to PIM Page
 
 Verify Successful Navigation to Leave Page
     [documentation]  This test case verifies that the user is able to successfully Login and reach to Leave page
-    [Tags]  Smoke  TabPage
+    [Tags]  ${tags}
     Open Browser With Parameter
     Input Username
     Input Password

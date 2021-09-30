@@ -6,6 +6,7 @@ Variables  ../TestData/Testdata.py
 *** Variables ***
 ${URL}            https://opensource-demo.orangehrmlive.com/
 ${browser}        %{BROWSER}
+${tags}           %{TAGS}
 ${DELAY}          0
 
 *** Keywords ***
