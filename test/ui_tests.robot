@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation  Page Object in Robot Framework
+Documentation  UI tests in Robot Framework
 Library  SeleniumLibrary
 Library  pabot.PabotLib
 Resource  ../Resources/KeywordDefinition/LoginPage.robot
