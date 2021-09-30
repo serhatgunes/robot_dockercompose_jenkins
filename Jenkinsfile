@@ -28,7 +28,8 @@ node {
 
        if (isUnix()) {
                 /* sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot' */
-                sh 'pabot --pabotlib --processes 2 --outputdir ./reports --argumentfile1 Firefox.args --argumentfile2 Chrome.args test/ui_tests.robot'
+                sh './wait-for-grid.sh && docker exec test-execution
+                pabot --pabotlib --processes 2 --outputdir ./reports --argumentfile1 Firefox.args --argumentfile2 Chrome.args test/ui_tests.robot'
             }
         else {
                 bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
