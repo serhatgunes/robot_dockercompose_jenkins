@@ -1,13 +1,12 @@
  /* This pipeline creates a docker compose and then executes all the scripts. Note the Jenkins has to be in Linux environment */
 node {
     def app
-    options { timestamps () }
 
     stage('Clone repository') {
         /* Clone repository */
         checkout scm
     }
-
+    timestamps {
     stage('Docker Setup') {
         parallel(
           "Start Compose": {
@@ -22,7 +21,7 @@ node {
           }
         )
     }
-
+    }
     stage('Execute') {
 		/* Execute the script. On faliure proceed to next step */
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
