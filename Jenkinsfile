@@ -37,7 +37,7 @@ node {
     }
 
   try {
-      stage('Test myapp') {
+      stage('Reporting') {
          echo "R ${currentBuild.result} C ${currentBuild.currentResult}"
          step([
             $class : 'RobotPublisher',
