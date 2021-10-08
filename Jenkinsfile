@@ -1,13 +1,14 @@
  /* This pipeline creates a docker compose and then executes all the scripts. Note the Jenkins has to be in Linux environment */
 node {
+    timestamps {
     def app
 
     stage('Clone repository') {
         /* Clone repository */
         checkout scm
     }
-    timestamps {
-    stage('Docker Setup') {
+
+    stage('Docker Up Containers') {
         parallel(
           "Start Compose": {
     		/* Start docker-compose */
@@ -21,8 +22,8 @@ node {
           }
         )
     }
-    }
-    stage('Execute') {
+
+    stage('Execute Robot Tests With Parallel') {
 		/* Execute the script. On faliure proceed to next step */
         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
@@ -37,7 +38,7 @@ node {
     }
 
   try {
-      stage('Reporting') {
+      stage('Report Robot Results') {
          echo "R ${currentBuild.result} C ${currentBuild.currentResult}"
          step([
             $class : 'RobotPublisher',
@@ -55,7 +56,7 @@ node {
     } finally {
     }
 
-    stage('Docker Teardown') {
+    stage('Docker Down Containers and Remove Test Execution Image') {
         parallel(
           "Stop Compose": {
     		/* Tear down docker compose */
@@ -66,6 +67,7 @@ node {
             cmd_exec('docker rmi test-execution --force')
           }
         )
+        }
     }
 }
 
