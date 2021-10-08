@@ -6,4 +6,5 @@ COPY requirements.txt .
 COPY wait-for-grid.sh .
 RUN chmod +x wait-for-grid.sh
 #RUN pip install --upgrade pip
+
 RUN pip3 install -r requirements.txt
