@@ -14,6 +14,3 @@ requests==2.25.0                            # HTTP library for Python
 selenium==3.141.0                           # Python language bindings for Selenium WebDriver
 simplejson==3.17.2                          # JSON encoder and decoder for Python
 urllib3==1.26.2                             # HTTP client for Python
-
-# Selenium
-selenium                                    # Library for Selenium
