@@ -47,7 +47,7 @@ node {
             disableArchiveOutput : false,
             passThreshold : 100,
             unstableThreshold: 95.0,
-            otherFiles : "selenium-screenshot.png,*/report-.csv",
+            otherFiles : "selenium-screenshot*.png,*/report-.csv",
           ])
        }
        echo "R ${currentBuild.result} C ${currentBuild.currentResult}"
