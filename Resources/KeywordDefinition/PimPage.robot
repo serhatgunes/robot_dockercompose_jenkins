@@ -11,3 +11,4 @@ Click PIM Tab
     Wait Until Element Is Visible  ${PimTab}  timeout=15
     Mouse Over  ${PimTab}
     Double Click Element  ${PimTab}
+    Double Click Element  ${PimTab}

@@ -11,3 +11,4 @@ Click Admin Tab
     Wait Until Element Is Visible  ${AdminTab}  timeout=15
     Mouse Over  ${AdminTab}
     Double Click Element  ${AdminTab}
+    Double Click Element  ${AdminTab}

@@ -11,3 +11,4 @@ Click Leave Tab
     Wait Until Element Is Visible  ${LeaveTab}  timeout=15
     Mouse Over  ${LeaveTab}
     Double Click Element  ${LeaveTab}
+    Double Click Element  ${LeaveTab}
