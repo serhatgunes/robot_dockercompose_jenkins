@@ -13,7 +13,7 @@ SystemUsersBox = "id:systemUser-information"
 
 # Pim Page Locators
 PimTab = "id:menu_pim_viewPimModule"
-EmployeeInformationBox = "id:employee-informationxxx"
+EmployeeInformationBox = "id:employee-information"
 
 # Leave Page Locators
 LeaveTab = "id:menu_leave_viewLeaveModule"
