@@ -29,7 +29,7 @@ node {
 
        if (isUnix()) {
                 /* sh './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot' */
-                sh './wait-for-grid.sh && docker exec test-execution pabot --pabotlib --processes 2 --verbose --argumentfile1 Firefox.args --argumentfile2 Chrome.args --outputdir ./reports  --listener robotframework_reportportal.listener --variable RP_UUID:"99a9b574-3e14-42db-8108-c4a69baabbd1" --variable RP_ENDPOINT:"http://localhost:8080" --variable RP_LAUNCH:"default_TEST_EXAMPLE" --variable RP_PROJECT:"default_personal" test/ui_tests.robot'
+                sh './wait-for-grid.sh && docker exec test-execution pabot --pabotlib --processes 2 --verbose --argumentfile1 Firefox.args --argumentfile2 Chrome.args --outputdir ./reports  --listener robotframework_reportportal.listener --variable RP_UUID:"a21dd06e-c444-43ac-8dcd-b0456e09a974" --variable RP_ENDPOINT:"http://172.19.0.6:8080" --variable RP_LAUNCH:"default_TEST_EXAMPLE" --variable RP_PROJECT:"default_personal" test/ui_tests.robot'
             }
         else {
                 bat './wait-for-grid.sh && docker exec test-execution robot --outputdir ./reports -v browser:Chrome test/ui_tests.robot'
