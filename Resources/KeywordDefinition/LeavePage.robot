@@ -8,5 +8,6 @@ Verify Leave Page Box is Visible
     Wait Until Element Is Visible  ${LeaveListBox}  timeout=15
 
 Click Leave Tab
-    Click Element  ${LeaveTab}
-    Click Element  ${LeaveTab}
+    Wait Until Element Is Visible  ${LeaveTab}  timeout=15
+    Mouse Over  ${LeaveTab}
+    Double Click Element  ${LeaveTab}

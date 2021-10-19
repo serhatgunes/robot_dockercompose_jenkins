@@ -8,5 +8,6 @@ Verify System Users Box is Visible
     Wait Until Element Is Visible  ${SystemUsersBox}  timeout=15
 
 Click Admin Tab
-    Click Element  ${AdminTab}
-    Click Element  ${AdminTab}
+    Wait Until Element Is Visible  ${AdminTab}  timeout=15
+    Mouse Over  ${AdminTab}
+    Double Click Element  ${AdminTab}
