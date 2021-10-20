@@ -5,8 +5,9 @@ robotframework-sshlibrary==3.4.0            # Robot Framework test library for S
 robotframework-pabot==1.8.0                 # A parallel executor for Robot Framework tests
 
 # Report Portal Libraries
-robotframework-reportportal==5.0.3          # Listener for RobotFramework to report results to ReportPortal
-reportportal-client==5.0.5                  # Library used only for implementors of custom listeners for ReportPortal
+robotframework-reportportal-ng==2.0.0
+robotframework-reportportal==5.0.2          # Listener for RobotFramework to report results to ReportPortal
+reportportal-client==5.0.3                  # Library used only for implementors of custom listeners for ReportPortal
 
 # Python Libraries
 PyYAML==5.3.1                               # YAML parser and emitter for Python
