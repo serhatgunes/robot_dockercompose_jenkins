@@ -58,4 +58,11 @@ Verify Successful Navigation to Leave Page
     Verify Leave Page Box is Visible
     [Teardown]    Close Browser
 
+Verify Login Page is Opened Successfully
+    [documentation]  This test case verifies that login page is open successfully
+    [Tags]  ${tags}
+    Open Browser With Parameter
+    Verify Username and Password Buttons are Visible
+    [Teardown]    Close Browser
+
 *** Keywords ***
