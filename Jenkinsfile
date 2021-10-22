@@ -60,7 +60,8 @@ node {
         parallel(
           "Stop Compose": {
     		/* Tear down docker compose */
-            cmd_exec('docker-compose -f docker-compose.yml stop && docker-compose -f docker-compose.yml kill')
+            cmd_exec('docker-compose -f docker-compose.yml stop && sleep 1s && docker-compose -f docker-compose.yml kill')
+            cmd_exec('docker-compose -f docker-compose.yml kill --force')
           },
           "Remove Image": {
             /* Delete test-execution image which got created earlier */
