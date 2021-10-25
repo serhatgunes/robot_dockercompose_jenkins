@@ -49,7 +49,7 @@ node {
     } finally {
     }
 
-    stage('Docker Down Containers and Remove Test Execution Image') {
+    stage('Docker Stop and Kill Containers') {
         parallel(
           "Stop Compose": {
     		/* Tear down docker compose */
@@ -58,9 +58,8 @@ node {
           }
         )
         }
-    stage('Docker Down Containers and Remove Test Execution Image') {
+    stage('Remove Test Execution Image') {
         parallel(
-
           "Remove Image": {
             /* Delete test-execution image which got created earlier */
             cmd_exec('docker rmi test-execution --force')
