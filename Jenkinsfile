@@ -50,17 +50,22 @@ node {
     }
 
     stage('Docker Down Containers and Remove Test Execution Image') {
-
+        parallel(
           "Stop Compose": {
     		/* Tear down docker compose */
             cmd_exec('docker-compose -f docker-compose.yml stop && sleep 1s && docker-compose -f docker-compose.yml kill')
             cmd_exec('docker-compose -f docker-compose.yml rm --force')
-          },
+          }
+        )
+        }
+    stage('Docker Down Containers and Remove Test Execution Image') {
+        parallel(
+
           "Remove Image": {
             /* Delete test-execution image which got created earlier */
             cmd_exec('docker rmi test-execution --force')
           }
-
+        )
         }
     }
 }
