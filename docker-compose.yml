@@ -36,8 +36,8 @@ services:
       HUB_HOST: selenium-hub
       HUB_PORT: 4444
       VNC_NO_PASSWORD: 1
-      NODE_MAX_INSTANCES: 15
-      NODE_MAX_SESSION: 15
+      NODE_MAX_INSTANCES: 5
+      NODE_MAX_SESSION: 5
     ports:
       - 47750:5900
     expose:
@@ -55,8 +55,8 @@ services:
       HUB_HOST: selenium-hub
       HUB_PORT: 4444
       VNC_NO_PASSWORD: 1
-      NODE_MAX_INSTANCES: 15
-      NODE_MAX_SESSION: 15
+      NODE_MAX_INSTANCES: 5
+      NODE_MAX_SESSION: 5
     ports:
       - 47761:5900
     expose:
