@@ -15,7 +15,7 @@ services:
       - selenium
     container_name: test-execution
   selenium-hub:
-    image: selenium/hub:latest
+    image: selenium/hub:3.141.59-20210607
     volumes:
       - '../.:/tmp/.'
       - /dev/shm:/dev/shm
