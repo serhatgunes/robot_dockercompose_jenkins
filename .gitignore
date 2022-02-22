@@ -5,3 +5,6 @@
 .pabotsuitenames
 /Resources/Locators/__pycache__
 /Resources/TestData/__pycache__
+./log.html
+./output.xml
+./report.html
